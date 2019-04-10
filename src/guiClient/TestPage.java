@@ -66,7 +66,8 @@ public class TestPage extends JLabel{
 			
 			panels[i] = new JPanel();
 			panels[i].setLayout(new BoxLayout(panels[i], BoxLayout.Y_AXIS));
-			testLabels[i] = new JLabel((i + 1) + ". " + tests[i]);
+			panels[i].setEnabled(true);
+			testLabels[i] = new JLabel(tests[i]);
 			if (HasFont("³ª´®¹Ù¸¥°íµñ")) testLabels[i].setFont(new Font("³ª´®¹Ù¸¥°íµñ", Font.PLAIN, 18));
 			panels[i].add(testLabels[i]);
 			answerGroup[i] = new ButtonGroup();
@@ -161,6 +162,13 @@ public class TestPage extends JLabel{
 	}
 	public void setTestData(String[] _tests, String[][] _answers, BufferedImage[] _img) {
 		tests = _tests;
+		for(int i = 0; i < tests.length; i++) {
+			tests[i] = (i+1) + ". " + tests[i];
+			if(tests[i].contains("-*nr-")) {
+				tests[i] = tests[i].replace("-*nr-", "<br/>");
+				tests[i] = "<html>" + tests[i] + "</html>";
+			}
+		}
 		answers = _answers;
 		img = _img;
 	}
