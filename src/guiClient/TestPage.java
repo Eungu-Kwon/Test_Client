@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class TestPage extends JLabel{
+public class TestPage extends JPanel{
 	int testCount;
 	int heigh = 0;
 	int width = 0;
@@ -88,8 +88,7 @@ public class TestPage extends JLabel{
 			
 			add(panels[i]);
 			add(Box.createRigidArea(new Dimension(0, 20)));
-			
-			if(width < panels[i].getMaximumSize().width) width = panels[i].getMaximumSize().width;
+			if(width < panels[i].getPreferredSize().getWidth()) width = (int)panels[i].getPreferredSize().getWidth();
 			heigh += panels[i].getMaximumSize().height;
 			heigh += 20;
 		}
